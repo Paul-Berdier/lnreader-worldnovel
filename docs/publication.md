@@ -1,19 +1,34 @@
-# Publication préparée, non effectuée
+# Publication de la version d’essai
 
-Cible vérifiée : dépôt existant **public et vide** `Paul-Berdier/lnreader-worldnovel`, compte connecté `Paul-Berdier`. La visibilité ne doit pas changer. Aucune PR, aucun commentaire ni correctif n’a été envoyé aux mainteneurs LNReader.
+Publication publique autorisée par l’utilisateur et réalisée le **23 septembre 2026** sur [Paul-Berdier/lnreader-worldnovel](https://github.com/Paul-Berdier/lnreader-worldnovel). Le compte connecté et le dépôt public vide ont été revérifiés avant l’écriture. La visibilité n’a pas changé.
 
-Le travail reste sur la branche dédiée `codex/worldnovel-vnh`. Le dépôt distant n’ayant aucun commit ni branche principale effective, une PR nécessitera d’abord une base distante (un commit initial vide peut remplir ce rôle), puis la branche de travail. Aucun merge automatique.
+## État distant vérifié
 
-Avant la première écriture publique, demander une autorisation nommant explicitement ce dépôt et les fichiers suivants : `.gitignore`, `.github/workflows/validate.yml`, `AGENTS.md`, `README.md`, `LICENSE`, `THIRD_PARTY_NOTICES.md`, `package.json`, `package-lock.json`, `tsconfig.json`, `src/`, `tests/`, `tools/`, `docs/`, `dist/`. Inspecter chaque fichier, confirmer l’absence de secrets, données personnelles privées, sessions et textes de romans. L’identifiant du compte GitHub et les références publiques des projets restent nécessairement visibles. Utiliser l’adresse de commit GitHub noreply, jamais une adresse personnelle.
+- `main` : `70b96bb054f2da9d6410b1b15d17ee0d3d778e78`, commit initial vide permettant la revue du travail dans une PR.
+- Code du plugin sur `codex/worldnovel-vnh` : `c70a7d6a7c7bab14cdfa78c1728b0730912c35de`. Les mises à jour documentaires de publication suivent sur cette même branche.
+- [PR n°1](https://github.com/Paul-Berdier/lnreader-worldnovel/pull/1) ouverte en brouillon, sans fusion automatique. Aucun envoi aux mainteneurs LNReader.
+- [Validation GitHub du code publié](https://github.com/Paul-Berdier/lnreader-worldnovel/actions/runs/35872857189) : terminée avec succès.
 
-Le build ne publie rien. Les manifestes `dist/plugins.min.json` et `dist/plugins.json` ciblent la branche de travail ; ces destinations restent théoriques tant qu’un push autorisé n’a pas eu lieu. Ne pas les présenter comme des liens d’installation actifs.
+Le manifeste d’installation public est :
 
-La CI `Validate` sépare validation et publication : elle n’a que `contents: read`, compile et teste hors ligne, puis vérifie que `dist/` est reproductible. Aucun secret, compte de lecture, navigateur connecté, tâche périodique, téléchargement de roman ni publication depuis une PR. Aucun workflow de publication automatique.
+```text
+https://raw.githubusercontent.com/Paul-Berdier/lnreader-worldnovel/codex/worldnovel-vnh/dist/plugins.min.json
+```
 
-Après autorisation et push : vérifier SHA distant, résultat du workflow et PR. Récupérer sans authentification le manifeste JSON, puis chaque URL de bundle/icône ; contrôler le contenu, les métadonnées, les hashes et le chargement du bundle. Le statut HTTP200 seul ne suffit pas. Fournir ensuite seulement l’URL réellement publiée et vérifiée. Maintenir la mention expérimentale tant que lecture/session Android ne sont pas validées.
+Le 23 septembre à 14:15:52 UTC, les téléchargements sans authentification des deux manifestes, du bundle et de l’icône ont reçu HTTP200 avec exactement les octets attendus. Vérifications supplémentaires : JSON valide, métadonnées cohérentes, signature PNG et chargement du bundle avec le wrapper stable et ses seuls imports autorisés. Les empreintes sont consignées dans [test-results.md](test-results.md).
 
-## Revue proposée
+**La publication n’est pas une validation de lecture.** Cette version expérimentale 0.1.0 s’installe, mais refuse la récupération des chapitres faute de capacité Firebase Auth/App Check dans le pont stable. Le catalogue Android peut aussi rester bloqué par Cloudflare. Conserver NovelFrance.
 
-Titre : `Add experimental WorldNovel VNH source and verified runtime audit`.
+## Contenu publié et exclusions
 
-Description : Le plugin WorldNovel officiel appelle encore des routes Madara alors que le site sert désormais des fiches Next.js. Cette variante personnelle conserve une identité distincte, extrait les métadonnées et chapitres, utilise l’index de recherche du site lorsqu’il est disponible dans le snapshot WebView et refuse d’enregistrer une page intermédiaire comme chapitre. La lecture observée dans le code public exige Firebase Auth et App Check, hors des capacités du pont de plugins stable ; aucun appel authentifié réussi n’est revendiqué. Le rapport de tests distingue tests synthétiques, réseau et installation Android. Cette PR ne doit pas être annoncée comme une réparation complète.
+Les 49 fichiers revus appartiennent à `.gitignore`, `.github/workflows/validate.yml`, `AGENTS.md`, `README.md`, `LICENSE`, `THIRD_PARTY_NOTICES.md`, `package.json`, `package-lock.json`, `tsconfig.json`, `src/`, `tests/`, `tools/`, `docs/` et `dist/`.
+
+Aucun profil, session, secret, donnée personnelle privée ou texte de roman n’a été trouvé dans ce contenu. Les fixtures sont synthétiques. L’identifiant GitHub public est nécessaire aux URL ; les commits utilisent l’adresse GitHub noreply. `.local/`, `.research/`, `node_modules/`, sauvegardes et traces de navigation sont exclus de Git.
+
+La CI `Validate` dispose uniquement de `contents: read`, installe les dépendances verrouillées avec `--ignore-scripts`, compile et teste hors ligne, puis vérifie la reproductibilité de `dist/`. Aucun secret, compte de lecture, navigateur connecté, tâche périodique, téléchargement de roman ni publication automatique.
+
+## Suite et retour arrière
+
+Garder les URL et l’identité du plugin pour les prochaines versions autorisées ; vérifier à nouveau le commit, le workflow et tous les fichiers distribués. Ne pas supprimer la branche de distribution tant que son manifeste est utilisé. Une fusion, un changement de visibilité ou l’adoption d’une APK LNReader modifiée n’est pas autorisé par cette publication.
+
+Pour retirer l’essai du téléphone : désinstaller seulement WorldNovel VNH et retirer son dépôt, en conservant NovelFrance et la sauvegarde. [Guide Android](installation.md).

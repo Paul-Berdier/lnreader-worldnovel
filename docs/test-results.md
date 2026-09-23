@@ -66,4 +66,8 @@ afc16dda242ccf803c56a3836a45e57573ee191134133b2f0cc40ce3e94da0c5  dist/plugins.m
 7a5d814113298aac01d2be51158d0b9a1191daee42cc1e88e52a256f0219d4af  dist/worldnovel-vnh.png
 ```
 
-Publication publique, workflow distant, commit distant, manifeste HTTPS anonyme et téléchargement des fichiers publiés : **NOT_RUN**, aucune autorisation de publication publique encore donnée. Le dépôt existant est public et reste inchangé. Aucun merge ni commentaire externe.
+Publication publique autorisée puis effectuée le 23 septembre 2026 : **PASS**. Le commit distant du code publié est `c70a7d6a7c7bab14cdfa78c1728b0730912c35de`, sur `codex/worldnovel-vnh`. La base `main` contient seulement le commit initial vide `70b96bb054f2da9d6410b1b15d17ee0d3d778e78`. La [PR n°1](https://github.com/Paul-Berdier/lnreader-worldnovel/pull/1) reste ouverte en brouillon, sans fusion.
+
+Le [workflow du commit publié](https://github.com/Paul-Berdier/lnreader-worldnovel/actions/runs/35872857189) est terminé avec succès : typage, build, tests hors ligne et contrôle de reproductibilité de `dist/`. La vérification anonyme du 23 septembre à 14:15:52 UTC a récupéré `plugins.min.json`, `plugins.json`, `worldnovel-vnh.js` et `worldnovel-vnh.png` : HTTP200, contenus et hashes identiques aux fichiers locaux. Le JSON est valide, les deux manifestes concordent, les métadonnées et imports du bundle chargé correspondent au contrat vérifié.
+
+URL d’installation publiée et vérifiée : [plugins.min.json](https://raw.githubusercontent.com/Paul-Berdier/lnreader-worldnovel/codex/worldnovel-vnh/dist/plugins.min.json). Ces contrôles valident la distribution du plugin expérimental ; ils ne changent pas les statuts BLOCKED/NOT_RUN de lecture, session et téléphone ci-dessus. Aucun commentaire chez les mainteneurs LNReader.
