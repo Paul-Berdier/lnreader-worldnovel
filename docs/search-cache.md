@@ -1,0 +1,13 @@
+# Recherche depuis l’index du site
+
+Le script public `627cb3261eb84f803192b6bf.js` observé le 23 septembre 2026 contient le composant de recherche du site. Celui-ci charge le document Firestore `sauvegarde/userpage`, puis écrit `localStorage.searchCache` sous la forme `{ data, expiresAt }`. `data.novels` est l’index utilisé pour filtrer les titres, auteurs, genres, tags et initiales. La limite de dix résultats se trouve dans l’affichage du site, après le filtrage ; elle n’est pas appliquée au cache.
+
+Le module `src/search.ts` traite **tout cet index de recherche du site**. Il ne recherche pas dans les seules sélections de l’accueil. Il conserve l’ordre de l’index, déduplique les chemins et pagine les résultats par vingt. La normalisation accepte les accents composés ou décomposés, la casse et les espaces. Le cache absent, périmé, trop volumineux ou mal formé provoque une erreur explicite ; une recherche valide sans correspondance renvoie une liste vide.
+
+Le module ne récupère aucun jeton, cookie ou contenu de chapitre. Les données supplémentaires de la photographie du stockage sont ignorées. L’expiration enregistrée par le site est respectée : le plugin ne la prolonge pas. Les bornes de validation sont de 5 000 000 caractères pour le cache JSON, 10 000 œuvres et 2 048 caractères pour une recherche. Une structure inconnue est refusée au lieu de produire silencieusement des résultats incomplets.
+
+LNReader 2.1.3 expose une photographie du `localStorage` de son WebView lorsque `webStorageUtilized` est activé. Cette photographie n’est pas une connexion permanente au stockage de la page. Après avoir ouvert la recherche WorldNovel et attendu son chargement, il peut être nécessaire de recharger la page du WebView pour capturer le nouveau cache, puis de fermer le WebView et relancer la recherche dans LNReader. Un cache créé dans Chrome n’est pas automatiquement celui du WebView LNReader.
+
+La lecture sans authentification du document Firestore a renvoyé `403 PERMISSION_DENIED` dans l’environnement d’analyse. Aucune tentative de contourner cette restriction n’est utilisée. Le cache doit être constitué par le parcours normal du site dans le WebView, après les validations éventuellement demandées par le site.
+
+**Validation :** tests synthétiques du parseur et de la recherche réussis ; parcours réel de création du cache et récupération dans LNReader Android **NOT_RUN**. Le mécanisme est fondé sur les scripts publics et le code de LNReader vérifiés. Il ne doit pas être présenté comme validé sur le téléphone. Le fait de trouver une œuvre dans l’index ne démontre pas que la lecture d’un chapitre fonctionne.
