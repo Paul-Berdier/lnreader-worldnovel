@@ -1,0 +1,25 @@
+{
+  "name": "lnreader-worldnovel-vnh",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Plugin expérimental WorldNovel VNH pour LNReader",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run typecheck && npm run build && npm test",
+    "diagnose": "node tools/diagnose.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "24.8.1",
+    "cheerio": "1.0.0",
+    "esbuild": "0.25.12",
+    "playwright": "1.55.1",
+    "typescript": "5.9.3"
+  }
+}

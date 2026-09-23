@@ -1,0 +1,11 @@
+[
+  {
+    "id": "worldnovel-vnh",
+    "name": "WorldNovel VNH",
+    "site": "https://world-novel.fr",
+    "lang": "Français",
+    "version": "0.1.0",
+    "url": "https://raw.githubusercontent.com/Paul-Berdier/lnreader-worldnovel/codex/worldnovel-vnh/dist/worldnovel-vnh.js",
+    "iconUrl": "https://raw.githubusercontent.com/Paul-Berdier/lnreader-worldnovel/codex/worldnovel-vnh/dist/worldnovel-vnh.png"
+  }
+]

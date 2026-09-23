@@ -1,0 +1,15 @@
+node_modules/
+.research/
+.local/
+.env
+.env.*
+!.env.example
+*.log
+*.har
+*-cookies.json
+*storage-state*
+browser-profile/
+playwright-report/
+test-results/
+*.lnreader
+*.backup
